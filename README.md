@@ -72,6 +72,111 @@ Now If you want to see your changes....there is two ways to do it:
 
 You can use the first way to save time.
 
+### 3.Let's build a simple connection with database :
+
+I choose [SQLite](https://docs.expo.io/versions/v38.0.0/sdk/sqlite/) for this example ,you can find more options for storing data, I found SQLite a good choice and easy to learn.
+#### SQLite 
+gives your app access to a database that can be queried through a WebSQL-like API. The database is persisted across restarts of your app.
+
+Now we have to install SQLite in our app 
+```
+$ expo install expo-sqlite
+```
+In your App.js , import SQLite like this :
+```js
+import * as SQLite from 'expo-sqlite';
+```
+Creating database will be in one line `SQLite.openDatabase('databaseName.db')` ,so you don't need to build a server to do the connection between your app and the database.
+For create , select and insert we can use `db.transaction(callback, error, success)` method ,transaction supports one method :`tx.executeSql(sqlStatement, arguments, success, error)`.
+here is an example for creating table and adding users to database using transaction:
+
+```js
+import React, {useState, useEffect} from 'react';
+import { StyleSheet, View, Button, Alert,
+  TextInput, SafeAreaView } from 'react-native';
+import * as SQLite from 'expo-sqlite';
+
+
+export default function App() {
+  const [name , setName]=useState(null);
+  const [email , setEmail]=useState(null)
+//this line will open a connection with database or create one if it's not existed
+  const db = SQLite.openDatabase('mynative.db');   //database name should end with .db
+
+  useEffect(()=>{
+      db.transaction(tx => {
+        tx.executeSql(  //this will never execute unless the table not existed ,that means it will execute for on time only
+          'create table if not exists users (id integer primary key not null, name text not null, email text not null)'
+        );
+      });
+      db.transaction(
+        tx => {  //every time you reload your app this line will be executed
+          tx.executeSql('select * from users;', [],(_, { rows }) =>{
+          console.log(JSON.stringify(rows),'data')   //you can see the result in your terminal
+        }
+        );
+        }
+      );  
+  
+  })
+
+  const addUser = () => {
+    if(name!=null && email!= null){
+      db.transaction(
+        tx => {  
+          tx.executeSql('insert into users (name, email) values ($1, $2);', [name,email]);
+          Alert.alert('you added user successfully')
+        }
+      );
+    }
+  }
+
+
+  return (
+    <View style={styles.container}>
+       <SafeAreaView >
+      <View>
+        <TextInput 
+        placeholder='Name'
+        value={name}
+        onChangeText={(text)=>setName(text)}
+        style={styles.input}
+        />
+        <TextInput 
+        placeholder='Email'
+        value={email}
+        onChangeText={(text)=>setEmail(text)}
+        style={styles.input}
+        />
+        <Button
+         title='Add User'
+         color='#841584'
+         onPress={ addUser}
+          />
+      </View>
+    </SafeAreaView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  input:{
+    width:200,
+    height:40,
+    margin:15,
+    
+  },
+});
+```
+
+
+
 
 ### Resources:
 - [expo](https://expo.io/learn)
