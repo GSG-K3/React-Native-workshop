@@ -32,5 +32,5 @@ $ npm start
 ```
 Now If you want to see your changes....their is two ways to do it:
 
-###### A.  Install the Expo client app on your iOS or Android phone and connect to the same wireless network as your computer. On Android, use the Expo app to scan the QR code from your terminal to open your project. On iOS, use the built-in QR code scanner of the Camera app.
-###### B.  you can launch your app on an [Android Virtual Device](https://docs.expo.io/workflow/android-studio-emulator/) by running npm run android, or on the [iOS Simulator](https://docs.expo.io/workflow/ios-simulator/) by running npm run ios (macOS only).
+- Install the Expo client app on your iOS or Android phone and connect to the same wireless network as your computer. On Android, use the Expo app to scan the QR code from your terminal to open your project. On iOS, use the built-in QR code scanner of the Camera app.
+- you can launch your app on an [Android Virtual Device](https://docs.expo.io/workflow/android-studio-emulator/) by running npm run android, or on the [iOS Simulator](https://docs.expo.io/workflow/ios-simulator/) by running npm run ios (macOS only).
