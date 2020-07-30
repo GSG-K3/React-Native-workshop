@@ -74,7 +74,7 @@ You can use the first way to save time.
 
 ### 3.Let's build a simple connection with database :
 
-I choose [SQLite](https://docs.expo.io/versions/v38.0.0/sdk/sqlite/) for this example ,you can find more options for storing data, I found SQLite a good choice and easy to learn. :stuck_out_tongue_winking_eye: The truth is I tried several way ,SQLite was the one worked for me.
+I choose [SQLite](https://docs.expo.io/versions/v38.0.0/sdk/sqlite/) for this example ,you can find more options for storing data, I found SQLite a good choice and easy to learn. :stuck_out_tongue_winking_eye: The truth is because the sqlStatement very familiar to me, other option was not familiar.
 #### SQLite 
 gives your app access to a database that can be queried through a WebSQL-like API. The database is persisted across restarts of your app.
 
@@ -125,7 +125,7 @@ export default function App() {
           tx.executeSql('insert into users (name, email) values ($1, $2);',
           [name,email],
           () => Alert.alert('you added user successfully'),
-          () => {
+          (error) => {
             if(error) Alert.alert('try again !!')});
           
         }
