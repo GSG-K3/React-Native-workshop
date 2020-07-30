@@ -74,7 +74,7 @@ You can use the first way to save time.
 
 ### 3.Let's build a simple connection with database :
 
-I choose [SQLite](https://docs.expo.io/versions/v38.0.0/sdk/sqlite/) for this example ,you can find more options for storing data, I found SQLite a good choice and easy to learn.
+I choose [SQLite](https://docs.expo.io/versions/v38.0.0/sdk/sqlite/) for this example ,you can find more options for storing data, I found SQLite a good choice and easy to learn. :stuck_out_tongue_winking_eye: The truth is I tried several way ,SQLite was the one worked for me.
 #### SQLite 
 gives your app access to a database that can be queried through a WebSQL-like API. The database is persisted across restarts of your app.
 
@@ -108,11 +108,9 @@ export default function App() {
         tx.executeSql(  //this will never execute unless the table not existed ,that means it will execute for on time only
           'create table if not exists users (id integer primary key not null, name text not null, email text not null)'
         );
-      });
-      db.transaction(
-        tx => {  //every time you reload your app this line will be executed
-          tx.executeSql('select * from users;', [],(_, { rows }) =>{
-          console.log(JSON.stringify(rows),'data')   //you can see the result in your terminal
+         //every time you reload your app this line will be executed
+          tx.executeSql('select * from users;', [],(_, { rows }) =>{  
+            console.log(rows._array)  //you can see the result in your terminal
         }
         );
         }
@@ -124,8 +122,11 @@ export default function App() {
     if(name!=null && email!= null){
       db.transaction(
         tx => {  
-          tx.executeSql('insert into users (name, email) values ($1, $2);', [name,email]);
-          Alert.alert('you added user successfully')
+          tx.executeSql('insert into users (name, email) values ($1, $2);',
+          [name,email],
+          Alert.alert('you added user successfully'),
+          Alert.alert('try again !!'));
+          
         }
       );
     }
@@ -174,6 +175,20 @@ const styles = StyleSheet.create({
   },
 });
 ```
+The result that returned from `executeSql()` will be like :
+```js
+{
+  insertId,      //(number) The row ID of the row that the SQL statement inserted into the database, if a row was inserted.
+  rowsAffected,  // (number) The number of rows that were changed by the SQL statement.
+  rows: {
+    length,      //(number) The number of rows returned by the query.
+    item(),      //(function) rows.item(index) returns the row with the given index. If there is no such row, returns null.
+    _array,      //The actual array of rows returned by the query.
+  },
+}
+```
+
+:computer: I hope that was useful for you :computer:
 
 
 
@@ -181,3 +196,4 @@ const styles = StyleSheet.create({
 ### Resources:
 - [expo](https://expo.io/learn)
 - [React-native setup](https://reactnative.dev/docs/environment-setup#docsNav)
+- [SQLite](https://docs.expo.io/versions/latest/sdk/sqlite/)
