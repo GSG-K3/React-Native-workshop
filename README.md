@@ -124,8 +124,9 @@ export default function App() {
         tx => {  
           tx.executeSql('insert into users (name, email) values ($1, $2);',
           [name,email],
-          Alert.alert('you added user successfully'),
-          Alert.alert('try again !!'));
+          () => Alert.alert('you added user successfully'),
+          () => {
+            if(error) Alert.alert('try again !!')});
           
         }
       );
