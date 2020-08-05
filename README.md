@@ -9,4 +9,5 @@
 - 03:00 PM - 04:00 PM -- React native share API
 
 :computer: I hope that was useful for you :computer:
+<br>
 [Resources](./resources.md)
