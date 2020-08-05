@@ -64,6 +64,7 @@ export default ShareExample;
 ```
 # Let's explain some methods: 
 <h2>1. share()</h2>
+
 ```js 
 static share(content, options) 
 ```
@@ -99,12 +100,14 @@ At least one of URL and message is required.
 - ```dialogTitle```
 
 <h2>2. sharedAction</h2>
+
 ```js
 static sharedAction
 ```
 The content was successfully shared.
 
-<h2>3. dismissedAction<h2>
+<h2>3. dismissedAction</h2>
+  
 ```js
 static dismissedAction
 ```
