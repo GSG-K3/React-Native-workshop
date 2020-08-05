@@ -3,29 +3,37 @@
 ### Let's build a simple connection to your App with database :
 
 I choose [SQLite](https://docs.expo.io/versions/v38.0.0/sdk/sqlite/) for this example ,you can find more options for storing data, I found SQLite a good choice and easy to learn. :stuck_out_tongue_winking_eye: The truth is because the sqlStatement very familiar to me, other option was not familiar.
-#### SQLite 
+
+#### SQLite
+
 gives your app access to a database that can be queried through a WebSQL-like API. The database is persisted across restarts of your app.
 
-Now we have to install SQLite in our app 
-```
+Now we have to install SQLite in our app
+
+```console
 $ expo install expo-sqlite
 ```
+
 In your App.js , import SQLite like this :
+
 ```js
 import * as SQLite from 'expo-sqlite';
 ```
+
 Creating database will be in one line `SQLite.openDatabase('databaseName.db')` ,so you don't need to build a server to do the connection between your app and the database.
 For create , select and insert we can use `db.transaction(callback, error, success)` method ,transaction supports one method :`tx.executeSql(sqlStatement, arguments, success, error)`.
 here is an example for creating table and adding users to database using transaction:
 
+return to your Home page and modify your function
 ```js
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, View, Button, Alert,
-  TextInput, SafeAreaView } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
+import { Button ,Text,Header, Input} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import * as SQLite from 'expo-sqlite';
+import Constants from 'expo-constants';
 
-
-export default function App() {
+const Home = ()=> {
   const [name , setName]=useState(null);
   const [email , setEmail]=useState(null)
 //this line will open a connection with database or create one if it's not existed
@@ -45,20 +53,20 @@ export default function App() {
         }
         );
         }
-      );  
-  
+      );
+
   })
 
-  const addUser = () => {
-    if(name!=null && email!= null){
+  const addUser = () => {  //this function will add a new row to database
+    if(name!=null && email!= null){ //if you reload the app you will be able to see the new row in your terminal
       db.transaction(
-        tx => {  
-          tx.executeSql('insert into users (name, email) values ($1, $2);',
-          [name,email],
-          () => Alert.alert('you added user successfully'),
-          (error) => {
+        tx => {
+          tx.executeSql('insert into users (name, email) values ($1, $2);',//sqlStatement
+          [name,email], //arguments
+          () => Alert.alert('you added user successfully'), //handle success
+          (error) => { //handle error
             if(error) Alert.alert('try again !!')});
-          
+
         }
       );
     }
@@ -66,48 +74,71 @@ export default function App() {
 
 
   return (
-    <View style={styles.container}>
-       <SafeAreaView >
-      <View>
-        <TextInput 
-        placeholder='Name'
-        value={name}
-        onChangeText={(text)=>setName(text)}
-        style={styles.input}
+    <View>
+     <Header
+            leftComponent={{
+                 icon: 'menu',
+                  color: '#fff' 
+                  }}
+            centerComponent={{
+                 text: 'MY APP', 
+                 style: { 
+                     color: '#fff' } 
+                     }}
+            rightComponent={{
+                 icon: 'comment', 
+                 color: '#fff' 
+                 }}
+            backgroundColor='#841584'
+            />    
+      <View style={styles.container}>
+        <Input
+            label='Enter your Name'
+            leftIcon={
+                <Icon
+                name='user'
+                size={24}
+                color='#841584'
+                />
+            }
+            placeholder='Name'
+            onChangeText={(text)=>setName(text)}
         />
-        <TextInput 
-        placeholder='Email'
-        value={email}
-        onChangeText={(text)=>setEmail(text)}
-        style={styles.input}
+        <Input
+            label='Enter your Email'
+            leftIcon={<Icon
+            name='at'
+            size={24}
+            color='#841584'
+            />}
+            placeholder='E-mail'
+            onChangeText={(text)=>setEmail(text)}
         />
         <Button
          title='Add User'
-         color='#841584'
+         buttonStyle={{backgroundColor:"#841584"}}
          onPress={ addUser}
           />
       </View>
-    </SafeAreaView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input:{
-    width:200,
-    height:40,
-    margin:15,
-    
-  },
+      backgroundColor: '#fff',
+      paddingTop: Constants.statusBarHeight,
+      height:'100%',
+      padding:10,
+    },
 });
+
+export default Home
+
 ```
+
 The result that returned from `executeSql()` will be like :
+
 ```js
 {
   insertId,      //(number) The row ID of the row that the SQL statement inserted into the database, if a row was inserted.
@@ -119,6 +150,8 @@ The result that returned from `executeSql()` will be like :
   },
 }
 ```
+
 ### Resources:
+
 - [SQLite](https://docs.expo.io/versions/latest/sdk/sqlite/)
 - [React-Native with SQLite](https://medium.com/swlh/react-native-with-sqlite-1ec64702e35e)
