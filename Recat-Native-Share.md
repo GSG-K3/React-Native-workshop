@@ -115,4 +115,4 @@ iOS Only. The dialog has been dismissed.
 
 # References
 - [NPM](https://www.npmjs.com/package/react-native-share)
-- [React-Native-Tutorial](https://reactnative.dev/docs/share)
+- [React Native Tutorial](https://reactnative.dev/docs/share)
