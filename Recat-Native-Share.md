@@ -1,19 +1,17 @@
 # React Native Share API
 A simple tool for share message and file to other apps.
 
-![Test Image 1](https://www.google.com/url?sa=i&url=https%3A%2F%2Ftutorialscapital.com%2Freact-native-share-simple-message-through-share-api-android-ios-tutorial%2F&psig=AOvVaw3i_nUmjXhPSj1Mb3-U1WdZ&ust=1596689480659000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNDP7raig-sCFQAAAAAdAAAAABAY)
+<img src="./images/iOS_share_simple_message_screenshot2.png" alt="iOS share simple message">
 
 # How to install react-native-share
-1. <ul>
-<li>If you are using react-native >= 0.60 you just need to do a simple:</li>
+1. If you are using react-native >= 0.60 you just need to do a simple:
 ```
 $ yarn add react-native-share
 ```
-<li>Or if are using npm:</li>
+Or if are using npm:
 ```
 $ npm i react-native-share --save
 ```
-</ul>
 
 2. After that, if you use iOS then you should install  the dependencies bu running this command: 
 ```
@@ -33,7 +31,7 @@ import Share from "react-native-share";
 ```
 
 # Let's start with simple example
-copy the following code and paste it in your editor, then trying to run it:
+copy the following code and paste it in your editor, then try to run it:
 ```js
 import { Share, View, Button } from 'react-native';
 
@@ -78,23 +76,28 @@ In iOS, returns a Promise which will be invoked with an object containing ```act
 In Android, returns a Promise which will always be resolved with action being ```Share.sharedAction```.
 
 <h3>Content</h3>
-<ul> <li> ```message``` - a message to share </li></ul>
+
+- ```message``` - a message to share
 <h5>iOS</h5>
-<ul><li>```url``` - an URL to share</li></ul>
+
+- ```url``` - an URL to share
 At least one of URL and message is required.
 
 <h5>Android</h5>
-<ul><li>```title``` - title of the message</li></ul>
+
+- ```title``` - title of the message
 
 <h3>Options</h3>
+
 <h5>iOS</h5>
-<ul>
-<li>```subject``` - a subject to share via email</li>
-<li>```excludedActivityTypes```</li>
-<li>```tintColor```</li>
-</ul>
+
+- ```subject``` - a subject to share via email 
+- ```excludedActivityTypes```
+- ```tintColor```
+
 <h5>Android</h5>
-<ul><li>```dialogTitle```</li></ul>
+
+- ```dialogTitle```
 
 2. sharedAction
 ```js
@@ -110,4 +113,4 @@ iOS Only. The dialog has been dismissed.
 
 # References
 - [NPM](https://www.npmjs.com/package/react-native-share)
-- [React Native Tutorial] (https://reactnative.dev/docs/share)
+- [React-Native-Tutorial] (https://reactnative.dev/docs/share)
