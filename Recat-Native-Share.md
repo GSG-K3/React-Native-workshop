@@ -16,7 +16,7 @@ Or if you are using npm:
 
 OR
 
-```$cd ios && pod install ```
+```$ cd ios && pod install ```
 
 After that, you should be able to use the library on both Platforms, iOS and Android.
 
@@ -24,7 +24,9 @@ After that, you should be able to use the library on both Platforms, iOS and And
 
 simply import:
 
-```js import Share from "react-native-share"; ```
+```js 
+import Share from "react-native-share"; 
+```
 
 # Let's start with simple example
 copy the following code and paste it in your editor, then try to run it:
@@ -61,8 +63,10 @@ const ShareExample = () => {
 export default ShareExample;
 ```
 # Let's explain some methods: 
-1. share()
-```js static share(content, options) ```
+<h2>1. share()</h2>
+```js 
+static share(content, options) 
+```
 
 Open a dialog to share text content.
 
@@ -94,13 +98,13 @@ At least one of URL and message is required.
 
 - ```dialogTitle```
 
-2. sharedAction
+<h2>2. sharedAction</h2>
 ```js
 static sharedAction
 ```
 The content was successfully shared.
 
-3. dismissedAction
+<h2>3. dismissedAction<h2>
 ```js
 static dismissedAction
 ```
@@ -108,4 +112,4 @@ iOS Only. The dialog has been dismissed.
 
 # References
 - [NPM](https://www.npmjs.com/package/react-native-share)
-- [React-Native-Tutorial] (https://reactnative.dev/docs/share)
+- [react-native-share] (https://reactnative.dev/docs/share)
