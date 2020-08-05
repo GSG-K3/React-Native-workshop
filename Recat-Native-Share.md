@@ -13,7 +13,7 @@ Or if you are using npm:
 $ npm i react-native-share --save
 ```
 
-2. After that, if you use iOS then you should install  the dependencies bu running this command: 
+2. After that, if you use iOS then you should install  the dependencies by running this command: 
 ```
 $ npx pod-install 
 ```
