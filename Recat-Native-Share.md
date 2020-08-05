@@ -17,7 +17,11 @@ $ npm i react-native-share --save
 
 2. After that, if you use iOS then you should install  the dependencies bu running this command: 
 ```
-$ npx pod-install or cd ios && pod install
+$ npx pod-install 
+```
+OR
+```
+$cd ios && pod install
 ```
 After that, you should be able to use the library on both Platforms, iOS and Android.
 
