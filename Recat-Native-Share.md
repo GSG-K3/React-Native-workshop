@@ -8,7 +8,7 @@ A simple tool for share message and file to other apps.
 ```
 $ yarn add react-native-share
 ```
-Or if are using npm:
+Or if you are using npm:
 ```
 $ npm i react-native-share --save
 ```
