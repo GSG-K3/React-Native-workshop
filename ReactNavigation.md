@@ -29,15 +29,30 @@ npm install @react-navigation/bottom-tabs
 
 # Example:
 
-for this expample let's pretend you have three pages you want to switch between them useing bottom tab navigator so first you import them to the app.js file
+for this expample let's pretend you have two pages you want to switch between them using bottom tab navigator so first you import them to the app.js file
 
 NavigationContainer is a component which manages our navigation tree and contains the navigation state. This component must wrap all navigators structure
 
+creating a BottomTab navigator
+createBottomTabNavigator is a function that returns an object containing 2 properties: Screen and Navigator. Both of them are React components used for configuring the navigator. The Navigator should contain Screen elements as its children to define the configuration for routes.
+
+A route can be specified by using the Screen component. The Screen component accepts a name prop which corresponds to the name of the route we will use to navigate, and a component prop which corresponds to the component it'll render.
+
+the Tab.Navigator component accepts following props:
+
+- initialRouteName:The name of the route to render on first load of the navigator.
+
+- screenOptions:Default options to use for the screens in the navigator.
+
+- tabBarOptions :An object containing the props for the default tab bar component. If you're using a custom tab bar, these will be passed as props to the tab bar and you can handle them.
+
+The tab.screen accepts options props where you can set an icon change
+color and many things
+
 ```js
 import React from 'react';
-import Home from './components/Home';
-import List from './components/List';
-import NewItem from './components/NewItems';
+import Home from './Screens/Home';
+import List from './Screens/List';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -48,7 +63,7 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = () => (
   <Tab.Navigator>
     <Tab.Screen name="List" component={List} />
-    <Tab.Screen name="NewItem" component={NewItem} />
+
     <Tab.Screen
       name="Home"
       component={Home}
@@ -57,9 +72,7 @@ const TabNavigator = () => (
           <MaterialCommunityIcons name="home" size={size} />;
         },
       }}
-    />{' '}
-    // the tab.screen accepts options props where you can set an icon change
-    color,title and many things
+    />
   </Tab.Navigator>
 );
 
@@ -71,6 +84,14 @@ export default function App() {
   );
 }
 ```
+
+# Exercise
+
+return to your app and split the home function code into pages on called Home and the other page called List
+
+- the home page containe the form of adding new user
+- the List page containe the users cards
+  then switch between the pages using navigatin Tab bottom
 
 # Resources:
 
