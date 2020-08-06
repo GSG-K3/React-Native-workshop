@@ -20,8 +20,8 @@ now we can start using React Native Elements by adding `ThemeProvider` and `them
 import { ThemeProvider } from 'react-native-elements';
 
 const theme = {  
-  Button: {        //If yoy want to have the same styling for 
-    titleStyle: {  // every Buttonyou can add your magic here
+  Button: {        //If you want to have the same styling for 
+    titleStyle: {  // every Button you can add your magic here
       color: 'white',// I hope you are more creative than me
     },
     buttonStyle: {
