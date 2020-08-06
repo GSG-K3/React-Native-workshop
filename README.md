@@ -1,4 +1,5 @@
 # React-Native-workshop
+Today you are going to learn about React Native framework, I wish good luck to all of you.
 
 ## Schedule 
 - 09:00 AM - 10:00 AM -- [React Native Intro](./React-native.md)
@@ -8,5 +9,6 @@
 - 02:00 PM - 03:00 PM -- React native testing
 - 03:00 PM - 04:00 PM -- React native share API
 
-:computer: I hope that was useful for you :computer:
-[Resources](./resources.md)
+*:computer: I hope that was useful for you :computer:*
+<br>
+**_[Resources](./resources.md)_**

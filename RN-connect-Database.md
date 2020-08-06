@@ -36,6 +36,7 @@ import Constants from 'expo-constants';
 const Home = ()=> {
   const [name , setName]=useState(null);
   const [email , setEmail]=useState(null)
+  
 //this line will open a connection with database or create one if it's not existed
   const db = SQLite.openDatabase('mynative.db');   //database name should end with .db
 
@@ -150,6 +151,81 @@ The result that returned from `executeSql()` will be like :
   },
 }
 ```
+
+After adding some users to our database we can render what we added in any way you feel it's suitable .
+
+```js
+const [users, setUsers] = useState(null); 
+
+useEffect(() => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'create table if not exists users (id integer primary key not null, name text not null, email text not null)'
+      );
+      if (!users) {
+        tx.executeSql(
+          'select * from users;',
+          [],
+          (_, { rows: { _array } }) => setUsers(_array),
+          () => console.log('error fetching')
+        );
+      }
+    });
+  }, [users]);
+  ```
+Now in the return of the function you can display the data in List, Cards ...etc
+import Card, ListItem from react-native-elements and ScrollView from react-native
+
+```js
+ <ScrollView style={styles.container}>
+        <View>
+          <Input
+            label="Enter your name"
+            leftIcon={<Icon name="user" size={24} color="#841584" />}
+            placeholder="Name"
+            onChangeText={(text) => setName(text)}
+          />
+          <Input
+            label="Enter your Email"
+            leftIcon={<Icon name="at" size={24} color="#841584" />}
+            placeholder="E-mail"
+            onChangeText={(text) => setEmail(text)}
+          />
+          <Button
+            title="Add User"
+            buttonStyle={{ backgroundColor: '#841584' }}
+            onPress={addUser}
+          />
+        </View>
+        <View>
+          {users ? (
+            <Card containerStyle={{ padding: 0 }} title="Users">
+              {users.map((user, i) => {
+                return (
+                  <ListItem
+                    key={i}
+                    title={user.name}
+                    subtitle={user.email}
+                    roundAvatar
+                    leftAvatar={{
+                      source: {
+                        uri:
+                          'https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png',
+                      },
+                    }}
+                  />
+                );
+              })}
+            </Card>
+          ) : null}
+        </View>
+      </ScrollView>
+```
+If you have any Problems call 911 , for customers service press #1 , for Credit press #3 ,
+if you want to kill me press #47654 .
+
+Move on to the next topic .
+
 
 ### Resources:
 
