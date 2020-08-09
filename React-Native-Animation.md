@@ -4,8 +4,8 @@ Animations are very important to create a great user experience. Objects in moti
 
 So in React Native, there are two complementary animation systems:
 
-- [Animated API](AnimatedAPI)
-- [LayoutAnimation API](LayoutAnimationAPI)
+- Animated API
+- LayoutAnimation API
 
 <br>
 
