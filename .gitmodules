@@ -2,3 +2,6 @@
 	path = React-Native-workshop
 	url = https://github.com/GSG-K3/React-Native-workshop
 	branch = master
+[submodule "shareApiExample"]
+	path = shareApiExample
+	url = https://github.com/Hanan795/shareApiExample.git
