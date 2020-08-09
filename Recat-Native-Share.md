@@ -29,7 +29,7 @@ import Share from "react-native-share";
 ```
 
 # Let's start with simple example
-copy the following code and paste it in your editor, then try to run it:
+You can create new expo app and copy the following code and paste it in ```App.js```, then try to run it by running ```npm run dev```:
 ```js 
 import { Share, View, Button } from 'react-native';
 
@@ -62,6 +62,13 @@ const ShareExample = () => {
 
 export default ShareExample;
 ```
+OR You can follow these instructions: 
+
+```$ git clone https://github.com/Hanan795/shareApiExample/tree/b4dce1cb332f0f7a220106452a6268f19412629e```
+then ```cd shareApiExample``` then run this ```npm i``` and finally ```npm start```. 
+
+Enjoy this amazing experiance!!!
+
 # Let's explain some methods: 
 <h2>1. share()</h2>
 
