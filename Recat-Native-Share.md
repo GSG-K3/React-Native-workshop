@@ -67,7 +67,7 @@ OR You can follow these instructions:
 ```$ git clone https://github.com/Hanan795/shareApiExample/tree/b4dce1cb332f0f7a220106452a6268f19412629e```
 then ```cd shareApiExample``` then run this ```npm i``` and finally ```npm start```. 
 
-Now enjoy this amazing experiance :file:!!!
+Now enjoy this amazing experiance :fire:!!!
 
 # Let's explain some methods: 
 <h2>1. share()</h2>
