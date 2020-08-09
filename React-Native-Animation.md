@@ -41,11 +41,54 @@ There are three ways to call these animations methods along with calling them in
 
 1. **Animated.stagger()**: An array of animations may run in parallel (overlap), but are started in sequence with successive delays. Very similar to Animated.parallel() but allows you to add delays to the animations.
 
+## Example 
+```js
+import React, { useRef, useEffect } from 'react';
+import { Animated, Text, View } from 'react-native';
+
+const FadeInView = (props) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current  // Initial value for opacity: 0
+
+  React.useEffect(() => {
+    Animated.timing(
+      fadeAnim,
+      {
+        toValue: 1,
+        duration: 10000,
+      }
+    ).start();
+  }, [fadeAnim])
+
+  return (
+    <Animated.View                 // Special animatable View
+      style={{
+        ...props.style,
+        opacity: fadeAnim,         // Bind opacity to animated value
+      }}
+    >
+      {props.children}
+    </Animated.View>
+  );
+}
+
+// You can then use your `FadeInView` in place of a `View` in your components:
+export default () => {
+  return (
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <FadeInView style={{width: 250, height: 50, backgroundColor: 'powderblue'}}>
+        <Text style={{fontSize: 28, textAlign: 'center', margin: 10}}>Fading in</Text>
+      </FadeInView>
+    </View>
+  )
+}
+```
 # Exercises
 
 let's do some Exercises together with rect-native Animated API
 
-- [Exercise 1](./Exercise1)
+- add fade animation to the button in your Home page 
+- add animation to ScrollView in your List page
+[this link will help you](https://reactnative.dev/docs/animations)
 
 # LayoutAnimation API
 
