@@ -56,23 +56,40 @@ import List from './Screens/List';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => (
-  <Tab.Navigator>
-    <Tab.Screen name="List" component={List} />
+<Tab.Navigator
+    tabBarOptions={{
+      activeBackgroundColor: '#841584',
+      inactiveTintColor: 'gray',
+      activeTintColor: 'white',
+    }}
+    screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+        let iconName;
 
+        if (route.name === 'Home') {
+          iconName = focused ? 'home' : 'home';
+        } else if (route.name === 'example') {
+          iconName = focused ? 'user' : 'user';
+        }
+
+        // You can return any component that you like here!
+        return <Icon name={iconName} size={size} color={color} />;
+      },
+    })}
+  >
     <Tab.Screen
       name="Home"
       component={Home}
       options={{
-        tabBarIcon: ({ size }) => {
-          <MaterialCommunityIcons name="home" size={size} />;
-        },
+        tabBarBadge: 3,
       }}
     />
+    <Tab.Screen name="List" component={List} />
   </Tab.Navigator>
 );
 
