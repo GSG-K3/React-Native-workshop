@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
 ```
 import your Home page in to your App function and see if you need to add anything else
 
-now .... we have to move on, learn more about Navigating Between Screens.
+now .... we have to move on,to learn more .
 
 
 
