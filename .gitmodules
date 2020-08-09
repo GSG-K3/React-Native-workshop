@@ -1,0 +1,4 @@
+[submodule "React-Native-workshop"]
+	path = React-Native-workshop
+	url = https://github.com/GSG-K3/React-Native-workshop
+	branch = master
