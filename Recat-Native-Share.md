@@ -31,7 +31,8 @@ import Share from "react-native-share";
 # Let's start with simple example
 You can create new expo app and copy the following code and paste it in ```App.js```, then try to run it by running ```npm start```:
 ```js 
-import { Share, View, Button } from 'react-native';
+import React from 'react';
+import { StyleSheet, Share, View, TouchableOpacity, Text } from 'react-native';
 
 const ShareExample = () => {
   const onShare = async () => {
@@ -40,16 +41,36 @@ const ShareExample = () => {
         message:
           'React Native | A framework for building native apps using React',
       });
+
     } catch (error) {
       alert(error.message);
     }
   };
   return (
     <View style={{ marginTop: 50 }}>
-      <Button onPress={onShare} title="Share" />
+      <TouchableOpacity onPress={onShare} style={styles.shareButton}>
+      <Text  style={styles.shareButtonText}>Share</Text>
+      </TouchableOpacity>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  shareButton:{
+    margin: '10% 3% 10% 3%',
+    backgroundColor: "#009688",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12
+  },
+  shareButtonText: {
+    fontSize: 18,
+    color: "#fff",
+    fontWeight: "bold",
+    alignSelf: "center",
+    textTransform: "uppercase"
+  }
+  });
 
 export default ShareExample;
 ```
